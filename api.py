@@ -1,5 +1,19 @@
 import requests
 import xml.etree.ElementTree as ET
+from flask import Flask, render_template
+
+
+
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def main():
+    return render_template("googleMaps.html")
+
+
+
 
 def get_data():
 
@@ -14,4 +28,4 @@ def get_data():
         print(st_name + " is at: " + st_lat + ", " + st_lon)
         j += 1  
 
-get_data()
+#get_data()
