@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+    <title>Google Maps practice</title>
+</head>
+
+<body>
+<h1>HELLO</h1>
+
+<div id="map"></div>
+
+    <script>
+
+// Initialize and add the map
+function initMap() {
+
+  // The location of Ireland
+  var ireland = {lat: 53.2734, lng: -7.77832031};
+
+  // The map, centered at Ireland
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 6, center: ireland});
+
+  // The marker, positioned at Ireland
+  var marker = new google.maps.Marker({position: ireland, map: map});
+}
+    </script>
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUnw_66vWdVYo2Cj73v6ZwiIpyjZbdhM&callback=initMap">
+    </script>
+
+</body>
+
+</html>
