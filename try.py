@@ -1,16 +1,5 @@
 import requests
 import xml.etree.ElementTree as ET
-from flask import Flask, render_template
-
-
-app = Flask(__name__)
-
-@app.route('/')
-def main():
-    latLonStations = get_data()    
-    return render_template('googleMaps.html', latLonStations=latLonStations)
-
-
 
 
 def get_data():
@@ -18,7 +7,7 @@ def get_data():
     data = requests.get("http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML")
     root = ET.fromstring(data.content)    
 
-    latLonStations = []
+    latlon = []
     count = 0
     j = 0
     for i in root:
@@ -27,11 +16,9 @@ def get_data():
         st_lon = root[j][3].text
 
         if st_lat != "0" and st_lon != "0":
-            latLonStations.append([st_name, float(st_lat), float(st_lon)])
+            latlon.append([st_name, float(st_lat), float(st_lon)])
         j += 1
 
-    return latLonStations 
+    print(latlon)
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+get_data()
