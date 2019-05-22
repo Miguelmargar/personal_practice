@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    latLonStations = get_data()    
+    latLonStations = get_data()
     return render_template('googleMaps.html', latLonStations=latLonStations)
 
 
@@ -34,4 +34,4 @@ def get_data():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True)
