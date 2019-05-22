@@ -28,13 +28,28 @@
   		var map = new google.maps.Map(
 	      	document.getElementById('map'), {zoom: 7, center: ireland});
 
+		
+		var infowindow = new google.maps.InfoWindow();
+
 		// place different stations markers on the map
 		for (var i = 0; i < latLonStations.length; i++) {
 			var location = {lat: latLonStations[i][1], lng: latLonStations[i][2]};
-			var marker = new google.maps.Marker({position: location, map: map});
-			}
+			var marker = new google.maps.Marker({animation: google.maps.Animation.DROP, position: location, map: map});
+			
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+					infowindow.setContent('<div class="infoWin">' +
+					'<p class="detail">' + latLonStations[i][0] + '</p>' +
+					'</div>');
+					infowindow.open(map, marker);
+				}
+			})(marker, i));
 
-		// start the user's geolocations
+
+		} // initMap()
+
+
+		// start the user's geolocations---------------------------------------
 		infoWindow = new google.maps.InfoWindow;
 
 		// Try HTML5 geolocation.
