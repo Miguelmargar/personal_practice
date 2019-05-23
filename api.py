@@ -35,3 +35,6 @@ def get_data():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#set FLASK_APP=api.py
+#export FLASK_ENV=development
