@@ -11,9 +11,14 @@ function initMap() {
 
     var infowindow = new google.maps.InfoWindow();
 
+    // to center map around the markers
+    var bounds = new google.maps.LatLngBounds();
+
     // place different stations markers on the map
     for (var i = 0; i < latLonStations.length; i++) {
         var location = {lat: latLonStations[i][1], lng: latLonStations[i][2]};
+        // center map around the markers
+        bounds.extend(location);
         var marker = new google.maps.Marker({animation: google.maps.Animation.DROP, position: location, map: map});
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -25,8 +30,9 @@ function initMap() {
             }
         })(marker, i));
 
-
-     }// initMap()
+        // center map around the markers
+        map.fitBounds(bounds);
+     }
 
 
     // start the user's geolocations---------------------------------------
@@ -41,7 +47,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('You are here');
             infoWindow.open(map);
             map.setCenter(pos);
         }, function() {
@@ -51,7 +57,7 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
             }
-    }
+    }// initMap()
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
