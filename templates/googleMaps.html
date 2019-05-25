@@ -12,15 +12,26 @@
 <body>
 	<h1>HELLO</h1>
 
+	<!--MAP------------------------------------------------------------------------>
 	<div id="map"></div>
 
 	<!--List form api.py with station names, lat and lon coordinates---------------------------------------->
 	<script>var latLonStations = {{ latLonStations | safe }};</script>
 
 	 <script async defer
-    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUnw_66vWdVYo2Cj73v6ZwiIpyjZbdhM&callback=initMap">
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXUnw_66vWdVYo2Cj73v6ZwiIpyjZbdhM&libraries=places&callback=initMap">
 	 </script>
 	<script src="../static/maps.js"></script>
+
+
+	<!--Address search bar with google auto complete----------------------------------------------------->
+	<div id="loc">
+		Find a location:
+	</div>
+
+	<div id="locationField">
+		<input id="autocomp" class="controls" placeholder="Enter a location" type="text" />
+	</div>
 
 </body>
 

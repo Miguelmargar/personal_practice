@@ -37,4 +37,4 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 #set FLASK_APP=api.py
-#export FLASK_ENV=development
+#set FLASK_ENV=development

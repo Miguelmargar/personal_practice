@@ -34,6 +34,17 @@ function initMap() {
         map.fitBounds(bounds);
      }
 
+    // AutoComplete------------------------------------------------------------
+    var input = document.getElementById('autocomp');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+
+
+
+
+
 
     // start the user's geolocations---------------------------------------
     infoWindow = new google.maps.InfoWindow;
