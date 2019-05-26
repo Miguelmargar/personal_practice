@@ -12,3 +12,11 @@
 .detail {
 	text-align: center;
 }
+
+#autocomp {
+	left: 8px !important;
+	top: 95px !important;
+	height: 25px !important;
+	width: 168px !important;
+	font-size: 12pt !important;
+}

@@ -1,12 +1,12 @@
 // Initialize and add the map
 function initMap() {
 
-    // The location of Ireland
+    // The location of Ireland--------------------------------------------
     var ireland = {lat: 53.2734, lng: -7.77832031};
 
     // The map, centered at Ireland
     var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 7, center: ireland});
+        document.getElementById('map'), {zoom: 12, center: ireland});
 
 
     var infowindow = new google.maps.InfoWindow();
@@ -31,7 +31,7 @@ function initMap() {
         })(marker, i));
 
         // center map around the markers
-        map.fitBounds(bounds);
+        //map.fitBounds(bounds);
      }
 
     // AutoComplete------------------------------------------------------------
@@ -41,12 +41,7 @@ function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(input);
 
 
-
-
-
-
-
-    // start the user's geolocations---------------------------------------
+    // start the user's geolocations-------------------------------------------
     infoWindow = new google.maps.InfoWindow;
 
     // Try HTML5 geolocation.
