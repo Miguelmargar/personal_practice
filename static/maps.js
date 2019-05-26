@@ -11,13 +11,13 @@ function initMap() {
 
     var infowindow = new google.maps.InfoWindow();
 
-    // to center map around the markers
+    // 1/3 to center map around the markers
     var bounds = new google.maps.LatLngBounds();
 
     // place different stations markers on the map
     for (var i = 0; i < latLonStations.length; i++) {
         var location = {lat: latLonStations[i][1], lng: latLonStations[i][2]};
-        // center map around the markers
+        // 2/3 center map around the markers
         bounds.extend(location);
         var marker = new google.maps.Marker({animation: google.maps.Animation.DROP, position: location, map: map});
 
@@ -30,7 +30,7 @@ function initMap() {
             }
         })(marker, i));
 
-        // center map around the markers
+        // 3/3 center map around the markers
         //map.fitBounds(bounds);
      }
 
@@ -39,7 +39,9 @@ function initMap() {
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     var autocomplete = new google.maps.places.Autocomplete(input);
-
+    autocomplete.setFields(['geometry']);
+    console.log(autocomplete);
+    //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
 
     // start the user's geolocations-------------------------------------------
     infoWindow = new google.maps.InfoWindow;
