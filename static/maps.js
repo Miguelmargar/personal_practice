@@ -38,10 +38,13 @@ function initMap() {
     var input = document.getElementById('autocomp');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.setFields(['geometry']);
+    // use bounds to narrow autocomplete search to the bounds given when placing station markers
+    var defaultBounds = {
+	bounds: bounds
+	};
+
+    var autocomplete = new google.maps.places.Autocomplete(input, defaultBounds);
     console.log(autocomplete);
-    //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
 
     // start the user's geolocations-------------------------------------------
     infoWindow = new google.maps.InfoWindow;
