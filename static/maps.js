@@ -44,7 +44,19 @@ function initMap() {
 	};
 
     var autocomplete = new google.maps.places.Autocomplete(input, defaultBounds);
-    console.log(autocomplete);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
+      var pos = {
+	lat: lat,
+	lng:lng
+	};
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Here is your search');
+    });
+    
 
     // start the user's geolocations-------------------------------------------
     infoWindow = new google.maps.InfoWindow;
