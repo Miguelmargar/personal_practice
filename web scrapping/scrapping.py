@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+from datetime import *
 
 
 def getInfo():
@@ -23,8 +23,22 @@ def getInfo():
 
     # Get the required spans
     for i in span:
-        if i['data-reactid'] == "14" or i['data-reactid'] == "16":
-            print(i.get_text())
-                
+        if i['data-reactid'] == "14":
+            price = i.get_text()
+
+        elif i['data-reactid'] == "16":
+            percentage = i.get_text()
+
+    # Get the date of the info
+    getDate = datetime.today()     
+    date = str(getDate.day) + "-" + str(getDate.month)+ "-" + str(getDate.year)
+
+    file = open('prices.csv', 'a')
+    file.write(price + ", " + percentage + ", " + date)
+    file.close()
 
 getInfo()
+
+
+
+
