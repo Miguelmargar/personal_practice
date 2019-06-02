@@ -1,12 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import *
+from time import sleep
 
 
 def getInfo():
     """
-    Function to get the share price and percentage movement of the given
-    share - taken from yahoo finance webpage
+    Function to get the share price, percentage movement of the given
+    share and date of data retrieval to write on file
+    - Share price and percentage taken from yahoo finance webpage
 
     """
     # Company share price ticker
@@ -33,8 +35,9 @@ def getInfo():
     getDate = datetime.today()     
     date = str(getDate.day) + "-" + str(getDate.month)+ "-" + str(getDate.year)
 
+    # Open file, write the required date and close file
     file = open('prices.csv', 'a')
-    file.write(price + ", " + percentage + ", " + date)
+    file.write(price + ", " + percentage + ", " + date + "\n")
     file.close()
 
 getInfo()
