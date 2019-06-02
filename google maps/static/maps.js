@@ -40,7 +40,8 @@ function initMap() {
 
     // use bounds to narrow autocomplete search to the bounds given when placing station markers
     var defaultBounds = {
-	bounds: bounds
+	bounds: bounds,
+	strictBounds: true
 	};
 
     var autocomplete = new google.maps.places.Autocomplete(input, defaultBounds);
