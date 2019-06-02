@@ -1,0 +1,27 @@
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Montserrat,Helvetica Neue,Arial,sans-serif;
+    background-color: #F0F0F0;
+}
+
+.title {
+    height: 30px;
+    width: 12%;
+    padding: 12px 0px 8px 40px;
+    font-weight: 800;
+    color: #808080;
+    display: inline-block;
+}
+
+.name {
+    width: 85%;
+    font-weight: 800;
+    color: #808080;
+    display: inline-block;
+}
+
+hr {
+    margin: 0px 30px 0px 30px;
+    text-align: center;
+}
