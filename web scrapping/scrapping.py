@@ -40,8 +40,12 @@ class scraping():
         self.date = str(self.get_date.day) + "-" + str(self.get_date.month)+ "-" + str(self.get_date.year)
 
 
-    # Open and check if the date's info is already in the file
+
     def check_data(self):
+        """
+        Open and check if the date's info is already in the file
+        if so change variable self.write to False
+        """
 
         with open('prices.csv') as self.readFile:
             self.read_csv = csv.reader(self.readFile, delimiter=",")
@@ -51,9 +55,9 @@ class scraping():
                     self.write = False
         self.readFile.close()
 
-    # if the date in question is new add info to csv file else advise
-    def write_data(self):
 
+    def write_scrapped_data(self):
+        """if the date in question is not in the file add all info to csv file else advise"""
         if self.write:
             self.file = open('prices.csv', 'a')
             self.file.write(self.price + ", " + self.percentage + ", " + self.date + "\n")
@@ -62,11 +66,34 @@ class scraping():
             print("Today's information has already been acted upon")
 
 
+    def create_csv_file(self):
+        """Create a new csv file in directory"""
 
-a = scraping()
-a.get_data()
-a.check_data()
-a.write_data()
+        # Check if the file exists already if so advise
+        try:
+            self.already = True
+
+            while self.already:
+
+                # Ask user for new csv file name wanted
+                self.file_name = input("Enter file name including extension: ")
+
+                if open(self.file_name + ".csv", 'r'):
+                    print("File name already exits, please select a new one")
+
+        # If file does not exist already create it
+        except:
+            self.new_file = open(self.file_name + ".csv", 'w+')
+            self.new_file.close()
+
+
+
+
+# a = scraping()
+# a.create_csv_file()
+# a.get_data()
+# a.check_data()
+# a.write_scrapped_data()
 
 
 
