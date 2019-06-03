@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import *
-from time import sleep
+import csv
 
 
 def getInfo():
@@ -35,10 +35,24 @@ def getInfo():
     getDate = datetime.today()     
     date = str(getDate.day) + "-" + str(getDate.month)+ "-" + str(getDate.year)
 
-    # Open file, write the required date and close file
-    file = open('prices.csv', 'a')
-    file.write(price + ", " + percentage + ", " + date + "\n")
-    file.close()
+    # Open and check if the date's info is already in the file
+    write = True
+    with open('prices.csv') as readFile:
+        read_csv = csv.reader(readFile, delimiter=",")
+        check = " " + date
+        for row in read_csv:
+            if check == row[2]:
+                write = False
+    readFile.close()
+
+    # if the date in question is new add info to csv file else advise
+    if write:
+        file = open('prices.csv', 'a')
+        file.write(price + ", " + percentage + ", " + date + "\n")
+        file.close()
+    else:
+        print("Today's information has already been acted upon")
+
 
 getInfo()
 
