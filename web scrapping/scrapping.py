@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import *
 import csv
+import os
 
 class scraping():
 
@@ -94,28 +95,57 @@ class scraping():
 
 
     def write_csv_headers(self):
-        """Write on the csv file desired headers"""
+        """Write on an empty csv file the desired headers"""
+
+        self.exists = False
+
+        while not self.exists:
+
+            # Ask user for wanted file to write on
+            self.file_name = input("Enter file name including extension: ")
+
+            try:
+                with open(self.file_name) as self.read_file:
+                    # If the file is empty
+                    if os.stat("file").st_size == 0:
+                        continue # FINISH THIS**********************************************************************
+
+                    # If the file is not empty advise
+                    else:
+                        print("File is not empty")
+                    self.read_file.close()
+                    self.exists = True
+
+            except:
+                print("File name does not exist, please check spelling and try again")
+
+
 
 
     def print_contents(self):
-        """Print all the file contents"""
+        """
+        Print all the file contents
+        Check to see if file exists
+        """
         # Assume file does not exists
         self.exists = True
 
         # As long as it doesn't exist
         while self.exists:
+
             # Ask user for wanted file to print
             self.file_name = input("Enter file name including extension: ")
 
             try:
-                # Open the required file and print it out
+                # Open the required file print it out and close file
                 with open(self.file_name) as self.read_file:
                     for line in self.read_file:
                         print(line, end = " ")
+                self.read_file.close()
                 self.exists = False
 
             except:
-
+                # Inform the user the file name given does not exist
                 print("File name does not exist, please check spelling and try again")
 
 
