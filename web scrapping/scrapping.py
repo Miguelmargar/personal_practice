@@ -6,7 +6,7 @@ import csv
 class scraping():
 
     def __init__(self):
-        self.write = True
+        pass
 
     def get_data(self):
         """
@@ -47,8 +47,8 @@ class scraping():
         if so change variable self.write to False
         """
 
-        with open('prices.csv') as self.readFile:
-            self.read_csv = csv.reader(self.readFile, delimiter=",")
+        with open('prices.csv') as self.read_file:
+            self.read_csv = csv.reader(self.read_file, delimiter=",")
             self.check = " " + self.date
             for row in self.read_csv:
                 if self.check == row[2]:
@@ -58,16 +58,22 @@ class scraping():
 
     def write_scrapped_data(self):
         """if the date in question is not in the file add all info to csv file else advise"""
+
+        self.write = True
+
         if self.write:
             self.file = open('prices.csv', 'a')
             self.file.write(self.price + ", " + self.percentage + ", " + self.date + "\n")
             self.file.close()
         else:
-            print("Today's information has already been acted upon")
+            print("Today's information has already been processed")
 
 
     def create_csv_file(self):
-        """Create a new csv file in directory"""
+        """
+        Create a new csv file in directory
+        Checks whether the file already exists or not
+        """
 
         # Check if the file exists already if so advise
         try:
@@ -87,15 +93,44 @@ class scraping():
             self.new_file.close()
 
 
+    def write_csv_headers(self):
+        """Write on the csv file desired headers"""
+
+
+    def print_contents(self):
+        """Print all the file contents"""
+        # Assume file does not exists
+        self.exists = True
+
+        # As long as it doesn't exist
+        while self.exists:
+            # Ask user for wanted file to print
+            self.file_name = input("Enter file name including extension: ")
+
+            try:
+                # Open the required file and print it out
+                with open(self.file_name) as self.read_file:
+                    for line in self.read_file:
+                        print(line, end = " ")
+                self.exists = False
+
+            except:
+
+                print("File name does not exist, please check spelling and try again")
+
+
+
+
+
+
 
 
 # a = scraping()
-# a.create_csv_file()
 # a.get_data()
 # a.check_data()
 # a.write_scrapped_data()
 
-
-
-
+# Tested and working:
+# a.create_csv_file()
+# a.print_contents()
 
