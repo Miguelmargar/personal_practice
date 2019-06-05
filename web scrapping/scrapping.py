@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import *
-from time import *
 import csv
 import os
 
@@ -9,6 +8,7 @@ class scraping():
 
     def __init__(self):
         pass
+
 
     def get_data(self):
         """
@@ -40,7 +40,6 @@ class scraping():
         # Get the date of the info
         self.get_date = datetime.today()
         self.date = str(self.get_date.day) + "-" + str(self.get_date.month)+ "-" + str(self.get_date.year)
-
 
 
     def check_data(self):
@@ -125,8 +124,6 @@ class scraping():
                 print("File name does not exist, please check spelling and try again")
 
 
-
-
     def print_contents(self):
         """
         Print all the file contents
@@ -154,13 +151,20 @@ class scraping():
                 print("File name does not exist, please check spelling and try again")
 
 
+    def exists(self):
+        """Check if file exists"""
+
+        # Ask user for wanted file to check
+        self.file_name = input("Enter file name to CHECK EXcluding extension: ")
+
+        if os.path.exists(self.file_name + ".csv"):
+            print("xxxxxxxx FILE EXISTS xxxxxxxx")
+        else:
+            print("xxxxxxxx FILE DOES NOT EXIST xxxxxxxx")
 
 
 
-
-
-
-a = scraping()
+# a = scraping()
 # a.get_data()
 # a.check_data()
 # a.write_scrapped_data()
@@ -169,4 +173,5 @@ a = scraping()
 # a.create_csv_file()
 # a.write_csv_headers()
 # a.print_contents()
+# a.exists()
 
