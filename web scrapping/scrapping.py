@@ -54,7 +54,7 @@ class scraping():
             for row in self.read_csv:
                 if self.check == row[2]:
                     self.write = False
-        self.readFile.close()
+        self.read_file.close()
 
 
     def write_scrapped_data(self):
@@ -66,6 +66,7 @@ class scraping():
             self.file = open('prices.csv', 'a')
             self.file.write(self.price + ", " + self.percentage + ", " + self.date + "\n")
             self.file.close()
+            print("Data SUCCESFULLY added")
         else:
             print("Today's information has already been processed")
 
@@ -163,15 +164,13 @@ class scraping():
             print("xxxxxxxx FILE DOES NOT EXIST xxxxxxxx")
 
 
-
-# a = scraping()
-# a.get_data()
-# a.check_data()
-# a.write_scrapped_data()
+a = scraping()
+a.get_data()
+a.check_data()
+a.write_scrapped_data()
 
 # Tested and working:
 # a.create_csv_file()
 # a.write_csv_headers()
 # a.print_contents()
 # a.exists()
-
