@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import *
+from time import *
 import csv
 import os
 
@@ -83,7 +84,7 @@ class scraping():
             while self.already:
 
                 # Ask user for new csv file name wanted
-                self.file_name = input("Enter file name including extension: ")
+                self.file_name = input("Enter file name to CREATE FILE EXcluding extension: ")
 
                 if open(self.file_name + ".csv", 'r'):
                     print("File name already exits, please select a new one")
@@ -91,30 +92,34 @@ class scraping():
         # If file does not exist already create it
         except:
             self.new_file = open(self.file_name + ".csv", 'w+')
+            print("xxxxxxxx FILE CREATED xxxxxxxx")
             self.new_file.close()
 
 
     def write_csv_headers(self):
         """Write on an empty csv file the desired headers"""
 
-        self.exists = False
+        self.exists = True
 
-        while not self.exists:
+        while self.exists:
 
             # Ask user for wanted file to write on
-            self.file_name = input("Enter file name including extension: ")
+            self.file_name = input("Enter file name to INPUT HEADERS EXcluding extension: ")
 
             try:
-                with open(self.file_name) as self.read_file:
+                with open(self.file_name + ".csv", "w") as self.read_file:
                     # If the file is empty
-                    if os.stat("file").st_size == 0:
-                        continue # FINISH THIS**********************************************************************
+                    if os.path.getsize(self.file_name + ".csv") == 0:
+                        self.header = input("Please type the domain names: ")
+                        self.read_file.write(self.header + "\n")
+                        print("xxxxxxxx HEADERS ADDED xxxxxxxx")
 
                     # If the file is not empty advise
                     else:
                         print("File is not empty")
-                    self.read_file.close()
-                    self.exists = True
+
+                self.read_file.close()
+                self.exists = False
 
             except:
                 print("File name does not exist, please check spelling and try again")
@@ -134,11 +139,11 @@ class scraping():
         while self.exists:
 
             # Ask user for wanted file to print
-            self.file_name = input("Enter file name including extension: ")
+            self.file_name = input("Enter file name to PRINT contents EXcluding extension: ")
 
             try:
                 # Open the required file print it out and close file
-                with open(self.file_name) as self.read_file:
+                with open(self.file_name + ".csv") as self.read_file:
                     for line in self.read_file:
                         print(line, end = " ")
                 self.read_file.close()
@@ -155,12 +160,13 @@ class scraping():
 
 
 
-# a = scraping()
+a = scraping()
 # a.get_data()
 # a.check_data()
 # a.write_scrapped_data()
 
 # Tested and working:
 # a.create_csv_file()
+# a.write_csv_headers()
 # a.print_contents()
 
