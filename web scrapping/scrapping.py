@@ -6,7 +6,7 @@ import json
 import os
 
 
-class scraping():
+class Scraping():
 
     def __init__(self):
         pass
@@ -31,16 +31,22 @@ class scraping():
 
         # Get the required spans
         for i in self.span:
-            if i['data-reactid'] == "14" and i['data-reactid'] == "16":
+            if i['data-reactid'] == "14":
                 self.price = i.get_text()
+            elif i['data-reactid'] == "16":
                 self.percentage = i.get_text()
-                return True
-            else:
-                return False
 
         # Get the date of the info
         self.get_date = datetime.today()
         self.date = str(self.get_date.day) + "-" + str(self.get_date.month)+ "-" + str(self.get_date.year)
+
+        # Check if both variables have data - used in add_ticker() and remove_ticker()
+        try:
+            type(self.price)
+            type(self.percentage)
+        # If not return False
+        except:
+            return False
 
 
     def check_data(self, company):
@@ -100,7 +106,8 @@ class scraping():
         self.ticker = ticker
 
         # Check the ticker is valid
-        if not self.get_data(self.ticker):
+        if self.get_data(self.ticker) != False:
+            print("HEllO")
 
             self.file_name = input("Enter file name EXcluding extension to ADD TICKER: ")
 
@@ -126,11 +133,25 @@ class scraping():
         else:
             print("Ticker not valid please try again")
 
+    def remove_ticker(self, ticker):
+        self.ticker = ticker
+
+        # Check the ticker is valid
+        if not self.get_data(self.ticker):
+
+            # Check the file to add the ticker is valid
+            if os.path.exists(self.file_name + ".json"):
+                self.data = json.load(self.file)
+                print(self.data)
+
+
+        else:
+            print("Ticker not valid please try again")
 
 
 
-a = scraping()
-
+a = Scraping()
+a.add_ticker("IPDC.IR")
 
 
 
