@@ -88,6 +88,14 @@ class scraping():
                 self.check_data(i)
                 self.write_scrapped_data(i)
 
+    def get_tickers(self):
+        print(self.companies)
+
+    def add_ticker(self, ticker):
+        self.ticker = ticker
+
+        self.companies.append(self.ticker.upper())
+
 
 
 class file():
@@ -189,7 +197,7 @@ class file():
 
 
 a = scraping()
-a.scrape()
+# a.scrape()
 
 
 
@@ -199,3 +207,5 @@ a.scrape()
 # a.write_csv_headers()
 # a.print_contents()
 # a.exists()
+# a.get_tickers()
+# a.add_ticker("ipdc.ir")
