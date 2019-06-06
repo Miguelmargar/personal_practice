@@ -94,7 +94,9 @@ class Scraping():
                 self.check_data(i)
                 self.write_scrapped_data(i)
 
+
     def get_tickers(self):
+        """Print the tickers being followed"""
 
         self.file_name = input("Enter file name EXcluding extension to GET TICKERS:")
 
@@ -102,12 +104,17 @@ class Scraping():
             self.data = json.load(self.file)
             print(self.data["companies"])
 
+
     def add_ticker(self, ticker):
+        """
+        Add ticker function
+        Check if ticker is valid, already in list and if file exists
+        """
+
         self.ticker = ticker
 
         # Check the ticker is valid
         if self.get_data(self.ticker) != False:
-            print("HEllO")
 
             self.file_name = input("Enter file name EXcluding extension to ADD TICKER: ")
 
@@ -117,21 +124,28 @@ class Scraping():
                 # Open json file and update with ticker
                 with open(self.file_name + ".json") as self.file:
                     self.data = json.load(self.file)
-                    # Update json object
-                    self.data["companies"].append(self.ticker.upper())
-                    self.file.close()
 
-                with open(self.file_name + ".json", "w") as self.file:
-                    json.dump(self.data, self.file)
+                    # Check the ticker is not already in the list
+                    if self.ticker not in self.data["companies"]:
+                        # Update json object
+                        self.data["companies"].append(self.ticker.upper())
+                        self.file.close()
 
-                self.file.close()
-                print("Ticker SUCCESFULLY added")
+
+                        with open(self.file_name + ".json", "w") as self.file:
+                            json.dump(self.data, self.file)
+
+                        self.file.close()
+                        print("Ticker SUCCESFULLY added")
+                    else:
+                        print("Ticker is already in the list")
 
             else:
                 print("File does not exist, Please try again")
 
         else:
             print("Ticker not valid please try again")
+
 
     def remove_ticker(self, ticker):
         self.ticker = ticker
