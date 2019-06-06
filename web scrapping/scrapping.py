@@ -9,8 +9,8 @@ import os
 class scraping():
 
     def __init__(self):
+        pass
 
-        self.write = True
 
     def get_data(self, company):
         """
@@ -31,11 +31,12 @@ class scraping():
 
         # Get the required spans
         for i in self.span:
-            if i['data-reactid'] == "14":
+            if i['data-reactid'] == "14" and i['data-reactid'] == "16":
                 self.price = i.get_text()
-
-            elif i['data-reactid'] == "16":
                 self.percentage = i.get_text()
+                return True
+            else:
+                return False
 
         # Get the date of the info
         self.get_date = datetime.today()
@@ -98,127 +99,39 @@ class scraping():
     def add_ticker(self, ticker):
         self.ticker = ticker
 
-        self.file_name = input("Enter file name EXcluding extension to ADD TICKER:")
+        # Check the ticker is valid
+        if not self.get_data(self.ticker):
 
-        # Open json file and update with ticker
-        with open(self.file_name + ".json") as self.file:
-            self.data = json.load(self.file)
-            # Update json object
-            self.data["companies"].append(self.ticker.upper())
-            self.file.close()
+            self.file_name = input("Enter file name EXcluding extension to ADD TICKER: ")
 
+            # Check the file to add the ticker is valid
+            if os.path.exists(self.file_name + ".json"):
 
-        with open(self.file_name + ".json", "w") as self.file:
-            json.dump(self.data, self.file)
+                # Open json file and update with ticker
+                with open(self.file_name + ".json") as self.file:
+                    self.data = json.load(self.file)
+                    # Update json object
+                    self.data["companies"].append(self.ticker.upper())
+                    self.file.close()
 
-        self.file.close()
+                with open(self.file_name + ".json", "w") as self.file:
+                    json.dump(self.data, self.file)
 
+                self.file.close()
+                print("Ticker SUCCESFULLY added")
 
-class file():
+            else:
+                print("File does not exist, Please try again")
 
-    def __init__(self):
-        pass
-
-    def create_file(self):
-        """
-        Create a new csv file in directory
-        Checks whether the file already exists or not
-        """
-
-        self.extension = input("What file Extension do you want? ")
-
-        # Check if the file exists already if so advise
-        try:
-            self.already = True
-
-            while self.already:
-
-                # Ask user for new csv file name wanted
-                self.file_name = input("Enter file name to CREATE FILE EXcluding extension: ")
-
-                if open(self.file_name + self.extension, 'r'):
-                    print("File name already exits, please select a new one")
-
-        # If file does not exist already create it
-        except:
-            self.new_file = open(self.file_name + self.extension, 'w+')
-            print("xxxxxxxx FILE CREATED xxxxxxxx")
-            self.new_file.close()
-
-
-    def write_csv_headers(self):
-        """Write on an empty csv file the desired headers"""
-
-        self.exists = True
-
-        while self.exists:
-
-            # Ask user for wanted file to write on
-            self.file_name = input("Enter file name to INPUT HEADERS EXcluding extension: ")
-
-            try:
-                with open(self.file_name + ".csv", "w") as self.read_file:
-                    # If the file is empty
-                    if os.path.getsize(self.file_name + ".csv") == 0:
-                        self.header = input("Please type the domain names: ")
-                        self.read_file.write(self.header + "\n")
-                        print("xxxxxxxx HEADERS ADDED xxxxxxxx")
-
-                    # If the file is not empty advise
-                    else:
-                        print("File is not empty")
-
-                self.read_file.close()
-                self.exists = False
-
-            except:
-                print("File name does not exist, please check spelling and try again")
-
-
-    def print_csv_contents(self):
-        """
-        Print all the file contents
-        Check to see if file exists
-        """
-        # Assume file does not exists
-        self.exists = True
-
-        # As long as it doesn't exist
-        while self.exists:
-
-            # Ask user for wanted file to print
-            self.file_name = input("Enter file name to PRINT contents EXcluding extension: ")
-
-            try:
-                # Open the required file print it out and close file
-                with open(self.file_name + ".csv") as self.read_file:
-                    for line in self.read_file:
-                        print(line, end = " ")
-                self.read_file.close()
-                self.exists = False
-
-            except:
-                # Inform the user the file name given does not exist
-                print("File name does not exist, please check spelling and try again")
-
-
-    def exists_csv(self):
-        """Check if file exists"""
-
-        # Ask user for wanted file to check
-        self.file_name = input("Enter file name to CHECK EXcluding extension: ")
-
-        if os.path.exists(self.file_name + ".csv"):
-            print("xxxxxxxx FILE EXISTS xxxxxxxx")
         else:
-            print("xxxxxxxx FILE DOES NOT EXIST xxxxxxxx")
+            print("Ticker not valid please try again")
+
+
 
 
 a = scraping()
-a.get_tickers()
-a.add_ticker("ipdc.ir")
-# a.get_tickers()
 
 
-# b = file()
-# b.create_file()
+
+
+
