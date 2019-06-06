@@ -9,9 +9,8 @@ class scraping():
     def __init__(self):
 
         self.write = True
-
         # Companies tickers
-        self.companies = ["BIRG.IR"]
+        self.companies = ["BIRG.IR", "KRZ.IR"]
 
 
     def get_data(self, company):
@@ -44,45 +43,49 @@ class scraping():
         self.date = str(self.get_date.day) + "-" + str(self.get_date.month)+ "-" + str(self.get_date.year)
 
 
-    def check_data(self):
+    def check_data(self, company):
         """
         Open and check if the date's info is already in the file
         if so change variable self.write to False
         """
+
+        self.company = company
+
         # Open file and compare dates
         with open('prices.csv') as self.read_file:
             self.read_csv = csv.reader(self.read_file, delimiter=",")
             self.check = " " + self.date
             for row in self.read_csv:
-                if self.check == row[3]:
+                if self.company == row[0] and self.check == row[3]:
                     self.write = False
         self.read_file.close()
 
 
-    def write_scrapped_data(self):
+    def write_scrapped_data(self, company):
         """if the date in question is not in the file add all info to csv file else advise"""
 
-        if len(self.company) < 1:
-            print("Please add a company ticker to your list of companies")
+        self.company = company
 
-        elif len(self.company) > 0:
-            if self.write:
-
-                self.file = open('prices.csv', 'a')
-                self.file.write(self.company[i] + ", " + self.price + ", " + self.percentage + ", " + self.date + "\n")
-                self.file.close()
-                print("Data SUCCESFULLY added to " + os.path.basename("prices.csv"))
-            else:
-                print("Today's information has already been processed")
+        if self.write:
+            self.file = open('prices.csv', 'a')
+            self.file.write(self.company + ", " + self.price + ", " + self.percentage + ", " + self.date + "\n")
+            self.file.close()
+            print(self.company + " data SUCCESFULLY added to " + os.path.basename("prices.csv"))
+        else:
+            print("Today's information for " + self.company + " has already been processed")
 
 
     def scrape(self):
         """Scrape and write file for multiple tickers"""
 
-        for i in self.companies:
-            self.get_data()
-            self.check_data()
-            self.write_scrapped_data()
+        if len(self.companies) < 1:
+            print("No companies tracked so far. Please add at least one company ticker to your list")
+
+        elif len(self.companies) > 0:
+            for i in self.companies:
+                self.get_data(i)
+                self.check_data(i)
+                self.write_scrapped_data(i)
 
 
 
@@ -185,7 +188,7 @@ class scraping():
 
 
 a = scraping()
-# a.scrape()
+a.scrape()
 
 
 
