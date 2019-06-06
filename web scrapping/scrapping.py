@@ -10,7 +10,7 @@ class scraping():
 
         self.write = True
         # Companies tickers
-        self.companies = ["BIRG.IR", "KRZ.IR"]
+        self.companies = ["BIRG.IR", "KRZ.IR", "SK3.IR"]
 
 
     def get_data(self, company):
@@ -73,6 +73,7 @@ class scraping():
             print(self.company + " data SUCCESFULLY added to " + os.path.basename("prices.csv"))
         else:
             print("Today's information for " + self.company + " has already been processed")
+            self.write = True
 
 
     def scrape(self):
@@ -89,10 +90,10 @@ class scraping():
 
 
 
+class file():
 
-
-
-
+    def __init__(self):
+        pass
 
     def create_csv_file(self):
         """
