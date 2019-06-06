@@ -2,16 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import *
 import csv
+import json
 import os
+
 
 class scraping():
 
     def __init__(self):
 
         self.write = True
-        # Companies tickers
-        self.companies = ["BIRG.IR", "KRZ.IR", "SK3.IR"]
-
 
     def get_data(self, company):
         """
@@ -89,13 +88,30 @@ class scraping():
                 self.write_scrapped_data(i)
 
     def get_tickers(self):
-        print(self.companies)
+
+        self.file_name = input("Enter file name EXcluding extension to GET TICKERS:")
+
+        with open(self.file_name + ".json") as self.file:
+            self.data = json.load(self.file)
+            print(self.data["companies"])
 
     def add_ticker(self, ticker):
         self.ticker = ticker
 
-        self.companies.append(self.ticker.upper())
+        self.file_name = input("Enter file name EXcluding extension to ADD TICKER:")
 
+        # Open json file and update with ticker
+        with open(self.file_name + ".json") as self.file:
+            self.data = json.load(self.file)
+            # Update json object
+            self.data["companies"].append(self.ticker.upper())
+            self.file.close()
+
+
+        with open(self.file_name + ".json", "w") as self.file:
+            json.dump(self.data, self.file)
+
+        self.file.close()
 
 
 class file():
@@ -103,11 +119,13 @@ class file():
     def __init__(self):
         pass
 
-    def create_csv_file(self):
+    def create_file(self):
         """
         Create a new csv file in directory
         Checks whether the file already exists or not
         """
+
+        self.extension = input("What file Extension do you want? ")
 
         # Check if the file exists already if so advise
         try:
@@ -118,12 +136,12 @@ class file():
                 # Ask user for new csv file name wanted
                 self.file_name = input("Enter file name to CREATE FILE EXcluding extension: ")
 
-                if open(self.file_name + ".csv", 'r'):
+                if open(self.file_name + self.extension, 'r'):
                     print("File name already exits, please select a new one")
 
         # If file does not exist already create it
         except:
-            self.new_file = open(self.file_name + ".csv", 'w+')
+            self.new_file = open(self.file_name + self.extension, 'w+')
             print("xxxxxxxx FILE CREATED xxxxxxxx")
             self.new_file.close()
 
@@ -157,7 +175,7 @@ class file():
                 print("File name does not exist, please check spelling and try again")
 
 
-    def print_contents(self):
+    def print_csv_contents(self):
         """
         Print all the file contents
         Check to see if file exists
@@ -184,7 +202,7 @@ class file():
                 print("File name does not exist, please check spelling and try again")
 
 
-    def exists(self):
+    def exists_csv(self):
         """Check if file exists"""
 
         # Ask user for wanted file to check
@@ -197,15 +215,10 @@ class file():
 
 
 a = scraping()
-# a.scrape()
-
-
-
-
-# Tested and working:
-# a.create_csv_file()
-# a.write_csv_headers()
-# a.print_contents()
-# a.exists()
+a.get_tickers()
+a.add_ticker("ipdc.ir")
 # a.get_tickers()
-# a.add_ticker("ipdc.ir")
+
+
+# b = file()
+# b.create_file()
