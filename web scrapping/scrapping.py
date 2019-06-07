@@ -116,24 +116,20 @@ class Scraping():
         # Check the ticker is valid
         if self.get_data(self.ticker) != False:
 
-            self.file_name = input("Enter file name EXcluding extension to ADD TICKER: ")
+            self.file_name = input("Enter file name EXcluding extension to ADD Ticker: ")
 
             # Check the file to add the ticker is valid
             if os.path.exists(self.file_name + ".json"):
 
                 # Open json file and update with ticker
-                with open(self.file_name + ".json") as self.file:
+                with open(self.file_name + ".json", "r+") as self.file:
                     self.data = json.load(self.file)
 
                     # Check the ticker is not already in the list
                     if self.ticker not in self.data["companies"]:
                         # Update json object
                         self.data["companies"].append(self.ticker.upper())
-                        self.file.close()
-
-
-                        with open(self.file_name + ".json", "w") as self.file:
-                            json.dump(self.data, self.file)
+                        json.dump(self.data, self.file)
 
                         self.file.close()
                         print("Ticker SUCCESFULLY added")
@@ -150,22 +146,31 @@ class Scraping():
     def remove_ticker(self, ticker):
         self.ticker = ticker
 
-        # Check the ticker is valid
-        if not self.get_data(self.ticker):
+        self.file_name = input("Enter file name EXcluding extension to REMOVE Ticker: ")
 
-            # Check the file to add the ticker is valid
-            if os.path.exists(self.file_name + ".json"):
+        # Check the file to add the ticker is valid
+        if os.path.exists(self.file_name + ".json"):
+
+            with open(self.file_name + ".json", "r+") as self.file:
                 self.data = json.load(self.file)
-                print(self.data)
+                if self.ticker in self.data["companies"]:
+                    self.data["companies"].remove(self.ticker)
+                    json.dump(self.data, self.file)
 
+                    self.file.close()
+                    print("Ticker Succesfully removed")
+
+                else:
+                    print("Ticker was not in the list")
 
         else:
-            print("Ticker not valid please try again")
+            print("File does not exist")
 
 
 
 a = Scraping()
 a.add_ticker("IPDC.IR")
+a.remove_ticker("IPDC.IR")
 
 
 
