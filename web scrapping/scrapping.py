@@ -9,8 +9,8 @@ import os
 class Scraping():
 
     def __init__(self):
-        pass
 
+        self.write = True
 
     def get_data(self, company):
         """
@@ -85,11 +85,15 @@ class Scraping():
     def scrape(self):
         """Scrape and write file for multiple tickers"""
 
-        if len(self.companies) < 1:
+        with open("companies" + ".json") as self.file:
+            self.data = json.load(self.file)
+        self.file.close()
+
+        if len(self.data["companies"]) < 1:
             print("No companies tracked so far. Please add at least one company ticker to your list")
 
-        elif len(self.companies) > 0:
-            for i in self.companies:
+        elif len(self.data["companies"]) > 0:
+            for i in self.data["companies"]:
                 self.get_data(i)
                 self.check_data(i)
                 self.write_scrapped_data(i)
@@ -172,7 +176,7 @@ class Scraping():
 
 
 
-a = Scraping()
+# a = Scraping()
 
 
 
