@@ -31,6 +31,15 @@ class file():
             print("xxxxxxxx FILE CREATED xxxxxxxx")
             self.new_file.close()
 
+    def remove_file(self):
+        """Remove an existing file"""
+
+        self.file_name = input("Enter file name to CREATE FILE INcluding extension: ")
+
+        os.remove(self.file_name)
+        print("File successfully removed")
+        
+
 
     def write_csv_headers(self):
         """Write on an empty csv file the desired headers"""
@@ -100,4 +109,7 @@ class file():
             print("xxxxxxxx FILE DOES NOT EXIST xxxxxxxx")
 
 
+b = file()
+b.create_file()
+b.remove_file()
 
