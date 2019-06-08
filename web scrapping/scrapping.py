@@ -4,6 +4,7 @@ from datetime import *
 import csv
 import json
 import os
+import re 
 
 
 class Scraping():
@@ -28,13 +29,18 @@ class Scraping():
 
         # Get all the spans
         self.span = self.soup.find_all('span')
-
+        
+        # Regex for checking price and percentage pattern to be correct
+        self.reg_price = "^([0-9|.]*)"
+        self.reg_percentage = "^([+|-])([0-9|.]*)(\s)(\(([+|-])([0-9|.]*)\%\))"
+        
         # Get the required spans
         for i in self.span:
-            if i['data-reactid'] == "14":
+            if i['data-reactid'] == "14" and re.match(self.reg_price, i.get_text()):
                 self.price = i.get_text()
-            elif i['data-reactid'] == "16":
-                self.percentage = i.get_text()
+                
+            elif i['data-reactid'] == "16" and re.match(self.reg_percentage, i.get_text()):
+                self.percentage = i.get_text()        
 
         # Get the date of the info
         self.get_date = datetime.today()
@@ -176,7 +182,9 @@ class Scraping():
 
 
 
-# a = Scraping()
+a = Scraping()
+a.scrape()
+
 
 
 
