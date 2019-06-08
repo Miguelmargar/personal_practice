@@ -122,15 +122,17 @@ class Scraping():
             if os.path.exists(self.file_name + ".json"):
 
                 # Open json file and update with ticker
-                with open(self.file_name + ".json", "r+") as self.file:
+                with open(self.file_name + ".json") as self.file:
                     self.data = json.load(self.file)
 
                     # Check the ticker is not already in the list
                     if self.ticker not in self.data["companies"]:
                         # Update json object
                         self.data["companies"].append(self.ticker.upper())
-                        json.dump(self.data, self.file)
+                        self.file.close()
 
+                        with open(self.file_name + ".json", "w") as self.file:
+                            json.dump(self.data, self.file)
                         self.file.close()
                         print("Ticker SUCCESFULLY added")
                     else:
@@ -151,12 +153,14 @@ class Scraping():
         # Check the file to add the ticker is valid
         if os.path.exists(self.file_name + ".json"):
 
-            with open(self.file_name + ".json", "r+") as self.file:
+            with open(self.file_name + ".json") as self.file:
                 self.data = json.load(self.file)
                 if self.ticker in self.data["companies"]:
                     self.data["companies"].remove(self.ticker)
-                    json.dump(self.data, self.file)
+                    self.file.close()
 
+                    with open(self.file_name + ".json", "w") as self.file:
+                        json.dump(self.data, self.file)
                     self.file.close()
                     print("Ticker Succesfully removed")
 
@@ -169,8 +173,6 @@ class Scraping():
 
 
 a = Scraping()
-a.add_ticker("IPDC.IR")
-a.remove_ticker("IPDC.IR")
 
 
 
