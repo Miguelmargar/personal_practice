@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request
 from scrapping import *
 
 
@@ -6,8 +6,9 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def main():
-
+def index():
+    hello = Scraping()
+    hello.scrape()
     return render_template('index.html')
 
 
@@ -17,8 +18,8 @@ def main():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True)
 
 
-#set FLASK_APP=api.py
+#set FLASK_APP=app.py
 #set FLASK_ENV=development

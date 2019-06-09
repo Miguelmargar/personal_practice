@@ -182,10 +182,6 @@ class Scraping():
 
 
 
-a = Scraping()
-a.scrape()
-
-
 
 
 
