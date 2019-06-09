@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    hello = Scraping()
-    hello.scrape()
+
     return render_template('index.html')
 
 
