@@ -7,7 +7,7 @@ import os
 import re 
 
 
-class Scraping():
+class Scraping:
 
     def __init__(self):
 
@@ -29,18 +29,18 @@ class Scraping():
 
         # Get all the spans
         self.span = self.soup.find_all('span')
-        
+
         # Regex for checking price and percentage pattern to be correct
         self.reg_price = "^([0-9|.]*)"
         self.reg_percentage = "^([+|-])([0-9|.]*)(\s)(\(([+|-])([0-9|.]*)\%\))"
-        
+
         # Get the required spans
         for i in self.span:
             if i['data-reactid'] == "14" and re.match(self.reg_price, i.get_text()):
                 self.price = i.get_text()
-                
+
             elif i['data-reactid'] == "16" and re.match(self.reg_percentage, i.get_text()):
-                self.percentage = i.get_text()        
+                self.percentage = i.get_text()
 
         # Get the date of the info
         self.get_date = datetime.today()
@@ -91,7 +91,7 @@ class Scraping():
     def scrape(self):
         """Scrape and write file for multiple tickers"""
 
-        with open("companies" + ".json") as self.file:
+        with open("companies.json") as self.file:
             self.data = json.load(self.file)
         self.file.close()
 
@@ -106,13 +106,22 @@ class Scraping():
 
 
     def get_tickers(self):
-        """Print the tickers being followed"""
+        """Get all the tickers being followed"""
 
-        self.file_name = input("Enter file name EXcluding extension to GET TICKERS:")
-
-        with open(self.file_name + ".json") as self.file:
+        with open("companies.json") as self.file:
             self.data = json.load(self.file)
-            print(self.data["companies"])
+            return self.data["companies"]
+
+
+    def get_first_ticker(self):
+        """Get the 1st ticker in list only"""
+
+        with open('prices.csv') as self.read_file:
+            self.read_csv = csv.reader(self.read_file, delimiter=",")
+            for i, row in enumerate(self.read_csv):
+                if i == 1:
+                    return row
+        self.read_file.close()
 
 
     def add_ticker(self, ticker):
@@ -181,7 +190,8 @@ class Scraping():
             print("File does not exist")
 
 
-
+a = Scraping()
+a.get_first_ticker()
 
 
 
