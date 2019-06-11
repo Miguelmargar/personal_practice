@@ -1,5 +1,7 @@
 var ctx1 = document.getElementById('chart')
 
+var chartData = chartData;
+
 
 
 

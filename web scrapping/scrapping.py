@@ -192,7 +192,7 @@ class Scraping:
             print("File does not exist")
 
 
-    def get_prices_dates(self, ticker):
+    def get_dates_prices(self, ticker):
         self.ticker = ticker
         self.list = []
 
@@ -201,7 +201,7 @@ class Scraping:
 
             for i in self.read_csv:
                 if i[0] == self.ticker:
-                    self.list.append((i[3][1:], float(i[1])))
+                    self.list.append([i[3][1:], float(i[1])])
                 else:
                     continue
         self.read_file.close()
@@ -210,6 +210,6 @@ class Scraping:
 
 
 
-a = Scraping()
-print(a.get_prices_dates("BIRG.IR")[0][1])
+# a = Scraping()
+# print(a.get_dates_prices("BIRG.IR")[0][1])
 

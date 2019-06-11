@@ -9,7 +9,8 @@ app = Flask(__name__)
 def index():
     a = Scraping()
     ticker = a.get_first_ticker()
-    return render_template('index.html', ticker=ticker)
+    chart_data = a.get_dates_prices(ticker[0])
+    return render_template('index.html', ticker=ticker, chart_data=chart_data)
 
 
 
