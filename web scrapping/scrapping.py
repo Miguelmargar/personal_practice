@@ -110,7 +110,9 @@ class Scraping:
 
         with open("companies.json") as self.file:
             self.data = json.load(self.file)
-            return self.data["companies"]
+        self.file.close()
+
+        return self.data["companies"]
 
 
     def get_first_ticker(self):
@@ -190,7 +192,24 @@ class Scraping:
             print("File does not exist")
 
 
-a = Scraping()
-a.scrape()
+    def get_prices_dates(self, ticker):
+        self.ticker = ticker
+        self.list = []
 
+        with open('prices.csv') as self.read_file:
+            self.read_csv = csv.reader(self.read_file, delimiter=",")
+
+            for i in self.read_csv:
+                if i[0] == self.ticker:
+                    self.list.append((i[3][1:], float(i[1])))
+                else:
+                    continue
+        self.read_file.close()
+
+        return self.list
+
+
+
+a = Scraping()
+print(a.get_prices_dates("BIRG.IR")[0][1])
 

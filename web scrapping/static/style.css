@@ -104,6 +104,12 @@ h2 {
     border-radius: 8px;
 }
 
+.holder {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
 /* List of tickers box---------------------------------------------------------------*/
 
 .tickers {
