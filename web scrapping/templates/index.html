@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     <link href="../static/style.css" rel="stylesheet" type="text/css"/>
     <title>Scrapping Practice</title>
 </head>
@@ -40,7 +41,7 @@
 
         <div class="news">
             <div class="holder">
-                <script> var chartData = {{ chart_data | safe }}; </script>
+                <script> var chartData = {{ chart_data | safe }}; var tickerName = {{ str_ticker | safe }};</script>
                 <canvas id="chart"></canvas>
             </div>
 

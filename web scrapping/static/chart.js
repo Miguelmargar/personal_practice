@@ -1,23 +1,35 @@
 var ctx1 = document.getElementById('chart')
-
+var tickerName = tickerName;
 var chartData = chartData;
 
 
+// Loop through chartData to build 2 lists one just prices and one just dates
+var dates = [];
+var prices = [];
+var maxPrice = 0;
+
+for (i = 0; i < chartData.length; i++) {
+    dates.push(chartData[i][0]);
+    prices.push(chartData[i][1]);
+    if (chartData[i][1] > maxPrice) {
+        maxPrice = chartData[i][1];
+    }
+}
 
 
-// graph rendering the past data for the station searched----------------------
-    var chart1 = new Chart(ctx1, {
+// graph rendering the past data for the ticker in question----------------------
+    var chart = new Chart(ctx1, {
 // The type of chart we want to create
 type: 'line',
 
 // The data for our dataset
 data: {
-    labels: past_x,
+    labels: dates,
     datasets: [{
-        label: 'Available bikes',
+        label: 'DATES',
         backgroundColor: '#1f567c',
         borderColor: 'black',
-        data: past_y
+        data: prices
     }]
 },
 
@@ -25,25 +37,25 @@ data: {
 options: {
         title: {
         display: true,
-        text: 'Past available bikes at station number ' + graph_data_past[0][3],
+        text: 'Historical closing prices for ' + tickerName[0],
         fontSize: 15
     },
     scales: {
         xAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: "Last 24 hours",
+                labelString: "Last number of days",
                 fontSize: 15
             }
         }],
         yAxes: [{
             ticks: {
                 beginAtZero: true,
-                suggestedMax: max_past,
+                suggestedMax: maxPrice,
             },
             scaleLabel: {
                 display: true,
-                labelString: "Available bikes",
+                labelString: "PRICES",
                 fontSize: 15
             }
         }]
