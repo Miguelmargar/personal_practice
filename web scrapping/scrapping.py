@@ -31,15 +31,15 @@ class Scraping:
         self.span = self.soup.find_all('span')
 
         # Regex for checking price and percentage pattern to be correct
-        self.reg_price = "^([0-9|.]*)"
-        self.reg_percentage = "^([+|-])([0-9|.]*)(\s)(\(([+|-])([0-9|.]*)\%\))"
+        self.reg_price = re.compile("^([0-9|.]*)")
+        self.reg_percentage = re.compile("^([+|-])([0-9|.]*)(\s)(\(([+|-])([0-9|.]*)\%\))")
 
         # Get the required spans
         for i in self.span:
-            if i['data-reactid'] == "14" and re.match(self.reg_price, i.get_text()):
+            if i['data-reactid'] == "14" and self.reg_price.match(i.get_text()) is not None:
                 self.price = i.get_text()
 
-            elif i['data-reactid'] == "16" and re.match(self.reg_percentage, i.get_text()):
+            elif i['data-reactid'] == "16" and self.reg_percentage.match(i.get_text()):
                 self.percentage = i.get_text()
 
         # Get the date of the info
@@ -191,7 +191,6 @@ class Scraping:
 
 
 a = Scraping()
-a.get_first_ticker()
-
+a.scrape()
 
 
