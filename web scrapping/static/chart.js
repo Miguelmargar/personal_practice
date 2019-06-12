@@ -26,8 +26,8 @@ type: 'line',
 data: {
     labels: dates,
     datasets: [{
-        label: 'DATES',
-        backgroundColor: '#1f567c',
+        label: 'Prices',
+        backgroundColor: 'green',
         borderColor: 'black',
         data: prices
     }]
@@ -36,14 +36,14 @@ data: {
 // Configuration options go here
 options: {
         title: {
-        display: true,
+        display: false,
         text: 'Historical closing prices for ' + tickerName[0],
         fontSize: 15
     },
     scales: {
         xAxes: [{
             scaleLabel: {
-                display: true,
+                display: false,
                 labelString: "Last number of days",
                 fontSize: 15
             }
@@ -54,7 +54,7 @@ options: {
                 suggestedMax: maxPrice,
             },
             scaleLabel: {
-                display: true,
+                display: false,
                 labelString: "PRICES",
                 fontSize: 15
             }
