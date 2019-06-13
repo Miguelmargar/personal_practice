@@ -124,6 +124,22 @@ h2 {
 	height: 50px;
 }
 
+.each {
+    width: 100%;
+    height: 50px;
+    border-radius: inherit;
+    background-color: black;
+}
+
+.equal {
+    width: 24%;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    color: white;
+}
+
 /* Footer---------------------------------------------------------------------------*/
 
 

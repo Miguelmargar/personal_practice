@@ -213,12 +213,12 @@ class Scraping:
         return self.list
 
     def get_all_last_info(self):
+        """Get needed info from last date of all the tickers being followed"""
 
         self.all = self.get_tickers()
 
-        last = []
-        tick = []
-
+        self.last = []
+        self.tick = []
 
         for i in self.all:
             with open('prices.csv') as self.read_file:
@@ -226,16 +226,16 @@ class Scraping:
 
                 for j in self.read_csv:
                     if j[0] in self.all:
-                        if j[0] == i and j[0] not in tick:
-                            last.append(j)
-                            tick.append(i)
+                        if j[0] == i and j[0] not in self.tick:
+                            self.last.append(j)
+                            self.tick.append(i)
 
-                        elif j[0] == i and j[0] in tick:
-                            last.pop()
-                            last.append(j)
+                        elif j[0] == i and j[0] in self.tick:
+                            self.last.pop()
+                            self.last.append(j)
                 self.read_file.close()
 
-        return last
+        return self.last
 
 a = Scraping()
 print(a.get_all_last_info())
