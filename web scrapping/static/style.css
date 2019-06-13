@@ -15,9 +15,11 @@ body {
 }
 
 .name {
-    width: 85%;
+    width: 80%;
     font-weight: 800;
     color: #808080;
+    display: inline-block;
+    padding-left: 40px;
     display: inline-block;
 }
 
@@ -37,7 +39,7 @@ main {
 /* main ticker box---------------------------------------------------------------------*/
 
 .share {
-    	background-color: white;
+    background-color: white;
 	width: 25%;
 	height: 400px;
 	display: inline-block;
@@ -129,6 +131,7 @@ h2 {
     height: 50px;
     border-radius: inherit;
     background-color: black;
+    border: 1px solid #F0F0F0;
 }
 
 .equal {

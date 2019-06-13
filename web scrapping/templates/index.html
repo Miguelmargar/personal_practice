@@ -19,42 +19,40 @@
     <hr>
 
     <main>
+            <div class="share">
+                <div class="share_top">
+                    <h2 class="tick">{{ ticker[0] }}</h2>
+                </div>
 
-        <div class="share">
-
-		<div class="share_top">
-			<h2 class="tick">{{ ticker[0] }}</h2>
-		</div>
-
-		<div class="share_main">
-			<div class="share_mid">
-				<h2 class="tick">€{{ ticker[1] }}</h2>
-			</div>
-            <div class="share_mid">
-                <h2 class="tick">{{ ticker[2] }}</h2>
-            </div>
-			<div class="share_bottom">
-				<h2 class="tick">{{ ticker[3] }}</h2>
-			</div>
-		</div>	
-        </div>
-
-        <div class="news">
-            <div class="holder">
-                <script> var chartData = {{ chart_data | safe }}; var tickerName = {{ str_ticker | safe }};</script>
-                <canvas id="chart" height="125"></canvas>
+                <div class="share_main">
+                    <div class="share_mid">
+                        <h2 class="tick">€{{ ticker[1] }}</h2>
+                    </div>
+                    <div class="share_mid">
+                        <h2 class="tick">{{ ticker[2] }}</h2>
+                    </div>
+                    <div class="share_bottom">
+                        <h2 class="tick">{{ ticker[3] }}</h2>
+                    </div>
+                </div>
             </div>
 
-        </div>
+            <div class="news">
+                <div class="holder">
+                    <script> var chartData = {{ chart_data | safe }}; var tickerName = {{ str_ticker | safe }};</script>
+                    <canvas id="chart" height="125"></canvas>
+                </div>
+            </div>
 
 	<div class="tickers">
+        {% for i in all %}
 		<div class="each">
-            <div class="equal"><p>hello</p></div>
-            <div class="equal"><p>hello</p></div>
-            <div class="equal"><p>hello</p></div>
-            <div class="equal"><p>hello</p></div>
+            <div class="equal"><p>{{ i[0] }}</p></div>
+            <div class="equal"><p>{{ i[1] }}</p></div>
+            <div class="equal"><p>{{ i[2] }}</p></div>
+            <div class="equal"><p>{{ i[3] }}</p></div>
         </div>
-
+        {% endfor %}
 	</div>
 
     </main>

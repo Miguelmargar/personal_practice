@@ -28,7 +28,7 @@ data: {
     datasets: [{
         label: 'Prices' + tickerName[0],
         backgroundColor: 'green',
-        borderColor: 'black',
+        borderColor: 'orange',
         data: prices
     }]
 },
