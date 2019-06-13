@@ -26,7 +26,7 @@ type: 'line',
 data: {
     labels: dates,
     datasets: [{
-        label: 'Prices',
+        label: 'Prices' + tickerName[0],
         backgroundColor: 'green',
         borderColor: 'black',
         data: prices

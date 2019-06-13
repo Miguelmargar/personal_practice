@@ -167,6 +167,8 @@ class Scraping:
 
 
     def remove_ticker(self, ticker):
+        """Remove ticker from the list of followed tickers"""
+
         self.ticker = ticker
 
         self.file_name = input("Enter file name EXcluding extension to REMOVE Ticker: ")
@@ -192,7 +194,9 @@ class Scraping:
             print("File does not exist")
 
 
-    def get_dates_prices(self, ticker):
+    def get_dates_prices_chart(self, ticker):
+        """Gets dates and prices for the rendering of the chart in html"""
+
         self.ticker = ticker
         self.list = []
 
@@ -208,8 +212,31 @@ class Scraping:
 
         return self.list
 
+    def get_all_last_info(self):
+
+        self.all = self.get_tickers()
+
+        last = []
+        tick = []
 
 
-# a = Scraping()
-# print(a.get_dates_prices("BIRG.IR")[0][1])
+        for i in self.all:
+            with open('prices.csv') as self.read_file:
+                self.read_csv = csv.reader(self.read_file, delimiter=",")
+
+                for j in self.read_csv:
+                    if j[0] in self.all:
+                        if j[0] == i and j[0] not in tick:
+                            last.append(j)
+                            tick.append(i)
+
+                        elif j[0] == i and j[0] in tick:
+                            last.pop()
+                            last.append(j)
+                self.read_file.close()
+
+        return last
+
+a = Scraping()
+print(a.get_all_last_info())
 

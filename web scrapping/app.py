@@ -10,7 +10,7 @@ def index():
     a = Scraping()
     ticker = a.get_first_ticker()
     str_ticker = [ticker[0]]
-    chart_data = a.get_dates_prices(ticker[0])
+    chart_data = a.get_dates_prices_chart(ticker[0])
     return render_template('index.html', ticker=ticker, str_ticker=str_ticker, chart_data=chart_data)
 
 
