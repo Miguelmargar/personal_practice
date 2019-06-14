@@ -8,12 +8,16 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     a = Scraping()
-    ticker = a.get_first_ticker()
-    str_ticker = [ticker[0]]
-    chart_data = a.get_dates_prices_chart(ticker[0])
-    all = a.get_all_last_info()
-    return render_template('index.html', ticker=ticker, str_ticker=str_ticker, chart_data=chart_data, all=all)
 
+    # if not auth:
+    ticker = a.get_first_ticker()
+    # if auth:
+    # ticker = a.get_all_last_info()
+
+    # chart work
+    str_ticker = [ticker[0]]
+    chart_data = a.get_dates_prices_chart(ticker[0]) 
+    return render_template('index.html', ticker=ticker, str_ticker=str_ticker, chart_data=chart_data)
 
 
 if __name__ == '__main__':

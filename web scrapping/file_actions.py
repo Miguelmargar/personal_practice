@@ -109,7 +109,4 @@ class file():
             print("xxxxxxxx FILE DOES NOT EXIST xxxxxxxx")
 
 
-b = file()
-b.create_file()
-b.remove_file()
 

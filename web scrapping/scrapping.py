@@ -237,6 +237,4 @@ class Scraping:
 
         return self.last
 
-a = Scraping()
-print(a.get_all_last_info())
 
