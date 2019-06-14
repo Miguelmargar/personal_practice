@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,6 +19,7 @@
     <hr>
 
     <main>
+	<div class="both">
             <div class="share">
                 <div class="share_top">
                     <h2 class="tick">{{ ticker[0] }}</h2>
@@ -37,12 +38,13 @@
                 </div>
             </div>
 
-            <div class="news">
+            <div class="graph">
                 <div class="holder">
                     <script> var chartData = {{ chart_data | safe }}; var tickerName = {{ str_ticker | safe }};</script>
-                    <canvas id="chart" height="125"></canvas>
+                    <canvas id="chart"></canvas>
                 </div>
             </div>
+	</div>
 
 	<div class="tickers">
         {% for i in all %}

@@ -38,6 +38,11 @@ main {
 
 /* main ticker box---------------------------------------------------------------------*/
 
+.both {
+	width: 100%;
+	height: 400px;
+}
+
 .share {
     background-color: white;
 	width: 25%;
@@ -55,6 +60,7 @@ main {
 	border-radius: 8px 8px 0px 0px;
 	box-sizing: border-box;
 	colour: black;
+	position: relative;
 }
 
 .share_main {
@@ -68,25 +74,26 @@ main {
 
 .share_mid {
 	width: 100%;
-	height: 25%;
-	padding-top: 18px;
-	padding-bottom: 8px
+	height: 33%;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .share_bottom {
 	width: 100%;
-	height: 25%;
+	height: 33%;
 	border-radius: 0px 0px 8px 8px;
-	padding-top: 18px;
-	padding-bottom: 8px;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .tick {
 	width: 100%;
 	margin: 0px;
 	padding-top: 26px;
+	position: absolute;
+	left: 0px;
+	top: 12px;
 }
 
 h2 {
@@ -96,7 +103,7 @@ h2 {
 
 /*graph box----------------------------------------------------------------------------*/
 
-.news {
+.graph {
     background-color: white;
     width: 50%;
     margin-left: 100px;
