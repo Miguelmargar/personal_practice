@@ -237,4 +237,3 @@ class Scraping:
 
         return self.last
 
-
