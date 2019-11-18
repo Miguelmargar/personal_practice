@@ -114,12 +114,12 @@ h2 {
 }
 
 .holder {
-    width: 50vw;
-    height: 100%!important;
+    width: 40vw;
     border-radius: inherit;
     position: relative;
     margin: auto;
 }
+
 
 /* List of tickers box---------------------------------------------------------------*/
 
