@@ -1,0 +1,41 @@
+body {
+    width: 100%;
+    margin: 0;
+    font-family: Montserrat,Helvetica Neue,Arial,sans-serif;
+    background-color: #F0F0F0;
+}
+
+.title {
+    height: 30px;
+    width: 12%;
+    padding: 12px 0px 8px 40px;
+    font-weight: 800;
+    color: #808080;
+    display: inline-block;
+}
+
+main {
+	text-align: center;
+}
+
+.sign {
+	display: inline-block;
+	height: 35vh;
+	width: 350px;
+	background-color: #b0bc96;
+	margin: 25px 15px 25px 15px;
+	border-radius: 8px;
+}
+
+.signtop {
+	margin: 0;
+	height: 15%;
+	background-color: #c7f1ed;
+	border-radius: 8px 8px 0px 0px;
+}
+
+.signtop h2 {
+	padding-top: 11px;
+	margin: inherit;
+	border-radius: 8px 8px 0px 0px;
+}
