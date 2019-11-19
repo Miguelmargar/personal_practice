@@ -10,19 +10,20 @@ body {
     width: 12%;
     padding: 12px 0px 8px 40px;
     font-weight: 800;
-    color: #808080;
+    color: #747474;
     display: inline-block;
 }
 
 main {
 	text-align: center;
+	margin: 50px 0px 50px 0px;
 }
 
 .sign {
 	display: inline-block;
 	height: 35vh;
 	width: 350px;
-	background-color: #b0bc96;
+	background-color: #c7f1ed;
 	margin: 25px 15px 25px 15px;
 	border-radius: 8px;
 }
@@ -30,12 +31,53 @@ main {
 .signtop {
 	margin: 0;
 	height: 15%;
-	background-color: #c7f1ed;
+	background-color: #6bc5e7;
 	border-radius: 8px 8px 0px 0px;
 }
 
 .signtop h2 {
+	color: #747474;
 	padding-top: 11px;
 	margin: inherit;
 	border-radius: 8px 8px 0px 0px;
+}
+
+.sign form {
+	padding-top: 15px;
+	padding-left: 20px;
+	text-align: left;
+	height: 75%;
+}
+
+.sign h3 {
+	margin: 0;
+	padding-top: 20px;
+	color: #747474;
+}
+
+.sign input {
+	border-radius: 5px;
+	height: 30px;
+	width: 90%;
+	border: 3px solid #ccc;
+	outline: none;
+	padding-left: 10px;
+	transition: 1.5s;
+}
+
+.sign input:focus {
+	border: 3px solid black;
+}
+
+.or {
+	display: inline-block;
+	margin: 0px 15px 0px 15px;
+	font-weight: bold;
+	color: #747474;
+}
+
+@media (max-width: 836px) {
+	.or {
+		display: block;
+	}
 }
