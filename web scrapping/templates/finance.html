@@ -11,6 +11,18 @@
 </head>
 
 <body>
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+          	<script>
+          	var messages = {{ messages | safe }}; 
+          	for (var i=0; i < messages.length; i++) {
+                alert(messages[i]);
+              }
+          	</script>
+	{% endif %}
+{% endwith %}
+
     <header>
         <h2 class="title">My Finance</h2>
     </header>
@@ -25,11 +37,12 @@
 			</div>
 			<form method="POST" action="/signUp">
 				<h3>User Name:</h3>
-				<input type="text" placeholder="User Name" name="upName">
+				<input type="text" placeholder="User Name" name="upName" required>
 				<h3>Email:</h3>
-				<input type="email" placeholder="Email" name="upEmail">
+				<input type="email" placeholder="Email" name="upEmail" required>
 				<h3>Password</h3>
-				<input type="password" placeholder="Password" name="upPass">
+				<input type="password" placeholder="Password" name="upPass" required>
+				<button type="submit" value="singUp">Sign Up</button>
 			</form>
 		</div>
     	<p class="or">OR...</p>
@@ -37,13 +50,14 @@
     		<div class="signtop">
     			<h2>Sign In</h2>
 			</div>
-			<form method="POST" action="/signUp">
+			<form method="POST" action="/signIn">
 				<h3>User Name:</h3>
-				<input type="text" placeholder="User Name" name="upName">
+				<input type="text" placeholder="User Name" name="upName" required>
 				<h3>Email:</h3>
-				<input type="email" placeholder="Email" name="upEmail">
+				<input type="email" placeholder="Email" name="upEmail" required>
 				<h3>Password</h3>
-				<input type="password" placeholder="Password" name="upPass">
+				<input type="password" placeholder="Password" name="upPass" required>
+				<button type="submit" value="singIn">Sign In</button>
 			</form>
     	</div>
     

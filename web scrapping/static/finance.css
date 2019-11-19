@@ -21,7 +21,7 @@ main {
 
 .sign {
 	display: inline-block;
-	height: 35vh;
+	height: 390px;
 	width: 350px;
 	background-color: #c7f1ed;
 	margin: 25px 15px 25px 15px;
@@ -67,6 +67,21 @@ main {
 
 .sign input:focus {
 	border: 3px solid black;
+}
+
+.sign button {
+	margin-top: 20px;
+	border-radius: 5px;
+	border: none;
+	color: #747474;
+	height: 40px;
+	width: 80px;
+	transition: 1.5s;
+}
+
+.sign button:hover {
+	background-color: #6bc5e7;
+	cursor: pointer;
 }
 
 .or {
