@@ -19,6 +19,47 @@ main {
 	margin: 50px 0px 50px 0px;
 }
 
+.success {
+	width: 60%;
+	background-color: #bdf4b5;
+	margin: auto;
+	border-radius: 8px;
+}
+
+.error {
+	width: 60%;
+	background-color: #ff7171;
+	margin: auto;
+	border-radius: 8px;
+}
+
+.success h2 {
+	padding: 20px;
+	display: inline-block;
+	margin: 0;
+	color: #747474;
+}
+
+.error h2 {
+	padding: 20px;
+	display: inline-block;
+	margin: 0;
+	color: #747474;
+}
+
+.closebtn {
+	display: inline-block;
+	color: #747474;
+	font-size: 25px;
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+.closebtn:hover {
+	color: black;
+	cursor: pointer;
+}
+
 .sign {
 	display: inline-block;
 	height: 390px;

@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, flash
+from flask import Flask, redirect, render_template, request, flash, session
 from scrapping import *
 from users import *
 
@@ -6,6 +6,8 @@ from users import *
 
 app = Flask(__name__)
 app.secret_key = flash_key
+app.config["ENV"] = 'development'
+app.config["DEBUG"] = True
 
 # @app.route('/')
 # def index():
@@ -24,6 +26,7 @@ app.secret_key = flash_key
 
 @app.route('/')
 def index():
+
     return render_template("finance.html")
 
 @app.route('/signUp', methods=['POST'])
@@ -36,9 +39,9 @@ def signup():
     signup = user.sign_user_up(user_name, email, password)
     
     if signup:
-        flash("%s, Your account Has been Created" % user_name)
+        flash("%s, Your account Has Successfully been Created" % user_name, "success")
     else:
-        flash("Name '%s' or '%s' is Already Taken, Please try again!" % (user_name, email))
+        flash("Name '%s' or '%s' is Already Taken, Please try again!" % (user_name, email), "error")
     
     return redirect("/")
     
