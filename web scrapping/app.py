@@ -5,7 +5,7 @@ from users import *
 
 
 app = Flask(__name__)
-app.secret_key = "flashKey"
+app.secret_key = flash_key
 
 # @app.route('/')
 # def index():
