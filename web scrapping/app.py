@@ -27,7 +27,7 @@ app.config["DEBUG"] = True
 @app.route('/')
 def index():
 
-    return render_template("finance.html")
+    return render_template("index.html")
 
 @app.route('/signUp', methods=['POST'])
 def signup():
@@ -62,7 +62,13 @@ def signin():
         return redirect("/")
     elif signin:
         session["user"] = user_name
-        return render_template("index.html")
+        return redirect(user_name)
+
+
+@app.route('/<user_name>')
+def dashboard(user_name):
+
+    return render_template("dashboard.html")
 
 
 if __name__ == '__main__':

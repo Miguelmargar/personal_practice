@@ -7,56 +7,73 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     <link href="../static/style.css" rel="stylesheet" type="text/css"/>
-    <title>Scrapping Practice</title>
+    <title>My Finance</title>
 </head>
 
 <body>
+
     <header>
-        <p class="title">DASHBOARD</p>
-        <p class="name">Miguel Martinez</p>
+        <h2 class="title">My Finance</h2>
+        
+        {% block header %}
+        {% endblock %}
     </header>
 
+	<hr>
+	
+	<main>
+	
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="{{ category }}">
+		       			<h2>{{ message }}</h2>
+		       			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+		       		</div>
+		   		{% endfor %}
+			{% endif %}
+		{% endwith %}
+		
+		
+		{% block main %}
+			<div class="sign">
+				<div class="signtop">
+					<h2>Sign Up</h2>
+				</div>
+				<form method="POST" action="/signUp">
+					<h3>User Name:</h3>
+					<input type="text" placeholder="User Name" name="upName" required>
+					<h3>Email:</h3>
+					<input type="email" placeholder="Email" name="upEmail" required>
+					<h3>Password</h3>
+					<input type="password" placeholder="Password" name="upPass" required>
+					<button type="submit" value="singUp">Sign Up</button>
+				</form>
+			</div>
+	    	<p class="or">OR...</p>
+	    	<div class="sign">
+	    		<div class="signtop">
+	    			<h2>Sign In</h2>
+				</div>
+				<form method="POST" action="/signIn">
+					<h3>User Name:</h3>
+					<input type="text" placeholder="User Name" name="inName" required>
+					<h3>Email:</h3>
+					<input type="email" placeholder="Email" name="inEmail" required>
+					<h3>Password</h3>
+					<input type="password" placeholder="Password" name="inPass" required>
+					<button type="submit" value="singIn">Sign In</button>
+				</form>
+	    	</div>
+	    	
+		{% endblock %}    
+    </main>
+    
     <hr>
 
-    <main>
-	<div class="both">
-            <div class="share">
-                <div class="share_top">
-                    <h2 class="tick">{{ ticker[0] }}</h2>
-                </div>
-
-                <div class="share_main">
-                    <div class="share_mid">
-                        <h2 class="tick">€{{ ticker[1] }}</h2>
-                    </div>
-                    <div class="share_mid">
-                        <h2 class="tick">{{ ticker[2] }}</h2>
-                    </div>
-                    <div class="share_bottom">
-                        <h2 class="tick">{{ ticker[3] }}</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="graph">
-                <div class="holder">
-                    <script> var chartData = {{ chart_data | safe }}; var tickerName = {{ str_ticker | safe }};</script>
-                    <canvas id="chart"></canvas>
-                </div>
-            </div>
-	</div>
-
-	<div class="tickers">
-		<div class="each">
-        		<div class="equal"><p>{{ ticker[0] }}</p></div>
-            		<div class="equal"><p>{{ ticker[1] }}</p></div>
-	        	<div class="equal"><p>{{ ticker[2] }}</p></div>
-            		<div class="equal"><p>{{ ticker[3] }}</p></div>
-        	</div>
-	</div>
-
-    </main>
-
+	<footer>
+	
+	</footer>
 
 
 

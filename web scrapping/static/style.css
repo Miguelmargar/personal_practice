@@ -10,160 +10,130 @@ body {
     width: 12%;
     padding: 12px 0px 8px 40px;
     font-weight: 800;
-    color: #808080;
+    color: #747474;
     display: inline-block;
 }
-
-.name {
-    width: 80%;
-    font-weight: 800;
-    color: #808080;
-    display: inline-block;
-    padding-left: 40px;
-    display: inline-block;
-}
-
-hr {
-    margin: 0px 30px 0px 30px;
-    text-align: center;
-}
-
-/* main---------------------------------------------------------------------------------*/
 
 main {
-    width: 100%;
-    margin-top: 50px;
-    text-align: center;
+	text-align: center;
+	margin: 50px 0px 50px 0px;
 }
 
-/* main ticker box---------------------------------------------------------------------*/
-
-.both {
-	width: 100%;
-	height: 400px;
-}
-
-.share {
-    background-color: white;
-	width: 25%;
-	height: 400px;
-	display: inline-block;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.success {
+	width: 70%;
+	background-color: #bdf4b5;
+	margin: auto;
 	border-radius: 8px;
 }
 
-.share_top {
-	width: 100%;
-	height: 25%;
-	padding-top: 12px;
-	background-color: white;
+.error {
+	width: 70%;
+	background-color: #ff7171;
+	margin: auto;
+	border-radius: 8px;
+}
+
+.success h2 {
+	padding: 20px;
+	display: inline-block;
+	margin: 0;
+	color: #747474;
+}
+
+.error h2 {
+	padding: 20px;
+	display: inline-block;
+	margin: 0;
+	color: #747474;
+}
+
+.closebtn {
+	display: inline-block;
+	color: #747474;
+	font-size: 25px;
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+.closebtn:hover {
+	color: black;
+	cursor: pointer;
+}
+
+.sign {
+	display: inline-block;
+	height: 390px;
+	width: 350px;
+	background-color: #c7f1ed;
+	margin: 25px 15px 25px 15px;
+	border-radius: 8px;
+}
+
+.signtop {
+	margin: 0;
+	height: 15%;
+	background-color: #6bc5e7;
 	border-radius: 8px 8px 0px 0px;
-	box-sizing: border-box;
-	colour: black;
-	position: relative;
 }
 
-.share_main {
-	width: 100%;
+.signtop h2 {
+	color: #747474;
+	padding-top: 11px;
+	margin: inherit;
+	border-radius: 8px 8px 0px 0px;
+}
+
+.sign form {
+	padding-top: 15px;
+	padding-left: 20px;
+	text-align: left;
 	height: 75%;
-	background-color: #03a9f4;
-	border-radius: 0px 0px 8px 8px;
+}
+
+.sign h3 {
+	margin: 0;
+	padding-top: 20px;
+	color: #747474;
+}
+
+.sign input {
+	border-radius: 5px;
+	height: 30px;
+	width: 90%;
+	border: 3px solid #ccc;
+	outline: none;
+	padding-left: 10px;
+	transition: 1.5s;
+}
+
+.sign input:focus {
+	border: 3px solid black;
+}
+
+.sign button {
+	margin-top: 20px;
+	border-radius: 5px;
+	border: none;
+	color: #747474;
+	height: 40px;
+	width: 80px;
+	transition: 1.5s;
+}
+
+.sign button:hover {
+	background-color: #6bc5e7;
+	cursor: pointer;
+}
+
+.or {
 	display: inline-block;
-	color: white;
+	margin: 0px 15px 0px 15px;
+	font-weight: bold;
+	color: #747474;
 }
 
-.share_mid {
-	width: 100%;
-	height: 33%;
-	box-sizing: border-box;
-	position: relative;
+@media (max-width: 836px) {
+	.or {
+		display: block;
+	}
 }
-
-.share_bottom {
-	width: 100%;
-	height: 33%;
-	border-radius: 0px 0px 8px 8px;
-	box-sizing: border-box;
-	position: relative;
-}
-
-.tick {
-	width: 100%;
-	margin: 0px;
-	padding-top: 26px;
-	position: absolute;
-	left: 0px;
-	top: 12px;
-}
-
-h2 {
-	width: 100%;
-	display: inline-block;
-}
-
-/*graph box----------------------------------------------------------------------------*/
-
-.graph {
-    background-color: white;
-    width: 50%;
-    margin-left: 100px;
-    height: 400px;
-    display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 8px;
-}
-
-.holder {
-    width: 82%;
-    margin: auto;
-}
-
-
-/* List of tickers box---------------------------------------------------------------*/
-
-.tickers {
-	margin-top: 50px;
-	background-color: white;
-	display: inline-block;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 8px;
-	width: 75%;
-	height: 50px;
-}
-
-.each {
-    width: 100%;
-    height: 50px;
-    border-radius: inherit;
-    background-color: black;
-    border: 1px solid #F0F0F0;
-}
-
-.equal {
-    width: 24%;
-    height: inherit;
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    color: white;
-}
-
-/* Footer---------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
