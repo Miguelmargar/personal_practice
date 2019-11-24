@@ -20,14 +20,14 @@ main {
 }
 
 .success {
-	width: 60%;
+	width: 70%;
 	background-color: #bdf4b5;
 	margin: auto;
 	border-radius: 8px;
 }
 
 .error {
-	width: 60%;
+	width: 70%;
 	background-color: #ff7171;
 	margin: auto;
 	border-radius: 8px;

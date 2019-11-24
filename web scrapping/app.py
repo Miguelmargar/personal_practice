@@ -44,7 +44,26 @@ def signup():
         flash("Name '%s' or '%s' is Already Taken, Please try again!" % (user_name, email), "error")
     
     return redirect("/")
-    
+
+@app.route('/signIn', methods=['POST'])
+def signin():
+    user_name = request.form.get("inName")
+    email = request.form.get("inEmail")
+    password = request.form.get("inPass")
+
+    user = Users()
+    signin = user.sign_user_in(user_name, email, password)
+
+    if signin == "noUser":
+        flash("User With Details Given Does Not Exist", "error")
+        return redirect("/")
+    elif signin == "wrongPass":
+        flash("Password Given Is Incorrect", "error")
+        return redirect("/")
+    elif signin:
+        session["user"] = user_name
+        return render_template("index.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)

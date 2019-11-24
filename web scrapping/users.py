@@ -45,6 +45,37 @@ class Users:
                 return True
             except:
                 return False
+    
+    
+    def sign_user_in(self, name, email, passw):
+        user = 'root'
+        password = db_key
+        host = '127.0.0.1'
+        database = 'myfinance'
+        
+        try:
+            con = pymysql.connect(host=host, database=database, user=user, password=password)
+        except Exception as e:
+            sys.exit(e)
+            
+        query = """SELECT user_name, user_email, user_password
+                FROM myfinance.users
+                WHERE myfinance.users.user_name = %s
+                    and myfinance.users.user_email = %s"""
+                
+        cur = con.cursor()
+        cur.execute(query, (name, email),)
+        data = cur.fetchall()
+        cur.close()
+        
+        if len(data) == 0:
+            return "noUser"
+        else:
+            if self.verify_password(data[0][2], passw):
+                return True
+            else:
+                return "wrongPass"
+    
             
             
     def hash_password(self, password):
@@ -73,8 +104,7 @@ class Users:
         
         return pwdhash == stored_password
     
-    
-    
+
     
     
         
